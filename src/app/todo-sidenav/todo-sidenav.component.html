@@ -1,0 +1,11 @@
+<div class="container">
+  <div fxLayout="row" fxLayoutAlign="space-between" class="title">
+    <span class="title-text">My lists </span> <span>I</span>
+  </div>
+  <ul fxLayout="column" class="list">
+    <li class="list-item" *ngFor="let list of lists">
+      {{ list }}
+    </li>
+  </ul>
+</div>
+
