@@ -1,0 +1,106 @@
+.container {
+  padding: 50px;
+}
+
+.header {
+  position: fixed;
+  left: 250px;
+  right: 50px;
+}
+
+.boards-row {
+  margin-top: 40px;
+  position: absolute;
+}
+
+.board {
+  position: relative;
+  width: 335px;
+  height: 600px;
+  margin-right: 40px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.1);
+}
+
+.board-title {
+  margin: 0;
+  padding: 8px 24px;
+  font-size: 20px;
+  line-height: 48px;
+}
+
+/* footer position absolute bottom 0 */
+
+.board-footer {
+  box-shadow: 0 -4px 10px 0 rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 53px;
+  padding: 0 10px;
+}
+
+.task-container {
+  height: 64px;
+  width: 100%;
+}
+
+.task {
+  position: relative;
+  width: 285px;
+  height: 48px;
+  border: thin solid #A9A6AB;
+  padding-left: 54px;
+  border-radius: 5px;
+}
+
+.send-input {
+  width: 253px;
+  height: 30px;
+  outline: none;
+  border: 1px solid #A9A6AB;
+  border-radius: 20px;
+  padding: 4px 20px;
+  margin-right: 10px;
+  transition: 0.4s;
+  font-size: 16px;
+}
+
+.send-input:focus, .send-input:hover {
+  border-color: #20A6FC;
+}
+
+.send-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  outline: none;
+  border: 1px solid #A9A6AB;
+  width: 40px;
+  height: 40px;
+  padding: 1px 7px 2px;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.send-button:hover {
+  background-color: #20A6FC;
+  border-color: #20A6FC;
+}
+
+.icon {
+  display: block;
+  width: 15px;
+  height: 15px;
+  transition: 0.4s;
+}
+
+.icon path {
+  transition: 0.4s;
+}
+
+.send-button:hover .icon path {
+  fill: #f9f9f9;
+}

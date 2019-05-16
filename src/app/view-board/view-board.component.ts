@@ -6,8 +6,57 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-board.component.css']
 })
 export class ViewBoardComponent implements OnInit {
+  public pageTitle = 'All tasks';
+  public taskBoards = [];
+  constructor() {
 
-  constructor() { }
+    this.taskBoards = [
+      {
+        name: 'Today',
+        tasks: [
+          {
+            name: 'Some task'
+          },
+          {
+            name: 'Another task'
+          }
+        ]
+      },
+      {
+        name: 'Tomorrow',
+        tasks: [
+          {
+            name: 'Some task'
+          },
+          {
+            name: 'Another task'
+          }
+        ]
+      },
+      {
+        name: 'Upcoming',
+        tasks: [
+          {
+            name: 'Some task'
+          },
+          {
+            name: 'Another task'
+          }
+        ]
+      },
+      {
+        name: 'Someday',
+        tasks: [
+          {
+            name: 'Some task'
+          },
+          {
+            name: 'Another task'
+          }
+        ]
+      }
+    ];
+  }
 
   ngOnInit() {
   }
