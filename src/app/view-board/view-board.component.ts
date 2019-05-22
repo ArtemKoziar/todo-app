@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-view-board',
@@ -8,6 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class ViewBoardComponent implements OnInit {
   public pageTitle = 'All tasks';
   public taskBoards = [];
+  public boardControls = [
+    { name: null },
+    { name: null },
+    { name: null },
+    { name: null },
+  ];
   constructor() {
 
     this.taskBoards = [
@@ -61,4 +68,9 @@ export class ViewBoardComponent implements OnInit {
   ngOnInit() {
   }
 
+  public addTask(board) {
+    console.log(this.boardControls);
+
+    this.taskBoards[board].tasks.push(this.boardControls[board]);
+  }
 }

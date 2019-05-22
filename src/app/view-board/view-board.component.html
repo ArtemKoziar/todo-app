@@ -11,18 +11,24 @@
   </div>
 
   <div class="boards-row" fxLayout="row">
-    <div class="board" *ngFor="let board of taskBoards" fxLayout="column">
+    <div class="board" *ngFor="let board of taskBoards; index as i" fxLayout="column">
       <h2 class="board-title"> {{board.name}} </h2>
       <div class="tasks" *ngFor=" let task of board.tasks">
         <div class="task-container" fxLayoutAlign="center center">
+          <button class="marker">
+            <mat-icon svgIcon="marker" ngClass="marker-icon"></mat-icon>
+          </button>
           <div class="task" fxLayoutAlign="start center">
             {{ task.name }}
           </div>
+          <button class="delete-btn">
+            <mat-icon ngClass="cross-icon" svgIcon="cross"></mat-icon>
+          </button>
         </div>
       </div>
       <div class="board-footer" fxLayout="row" fxLayoutAlign="center center">
-        <input type="text" placeholder="Type quickly" class="send-input">
-        <button class="send-button">
+        <input type="text" placeholder="Type quickly" [(ngModel)]="boardControls[i].name" class="send-input">
+        <button class="send-button" (click)="addTask(i)">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon">
                <path
                 d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3
