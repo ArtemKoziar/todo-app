@@ -1,0 +1,60 @@
+@font-face {
+  font-family: 'Open-Bold';
+  src: url("./fonts/OpenSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: 'Open-Semibold';
+  src: url("./fonts/OpenSans-Semibold.ttf");
+}
+
+@font-face {
+  font-family: 'Open-Regular';
+  src: url("./fonts/OpenSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'Activ-Grotesk';
+  src: url("./fonts/AktivGroteskCorp-Regular.ttf");
+}
+
+.bold {
+  font-family: Open-Bold;
+}
+
+.semibold {
+  font-family: Open-Semibold;
+}
+
+.regular {
+  font-family: Open-Regular;
+}
+
+.secondary-font {
+  font-family: Activ-Grotesk;
+}
+
+.title {
+  font-size: 28px;
+}
+
+.subtitle {
+  font-size: 20px;
+  letter-spacing: -0.5px;
+}
+
+.subtitle-light {
+  font-size: 18px
+}
+
+.hint {
+  font-size: 12px;
+}
+
+$primary-color: #20a6fc;
+$primary-text-color: #4a4a4a;
+$main-text-color: #2F2E41;
+$secondary-text-color: #A9A6AB;
+$background: #F9F9F9;
+$success: #24c875;
+$error: #eb5858;

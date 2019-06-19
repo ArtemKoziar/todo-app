@@ -1,11 +1,12 @@
 .container {
-  padding: 50px;
+  padding: 100px 50px;
 }
 
 .header {
   position: fixed;
   left: 250px;
   right: 50px;
+  top: 100px;
 }
 
 .boards-row {
@@ -26,7 +27,6 @@
 .board-title {
   margin: 0;
   padding: 8px 24px;
-  font-size: 20px;
   line-height: 48px;
 }
 

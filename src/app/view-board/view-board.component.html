@@ -1,36 +1,67 @@
 <div class="container">
   <div class="header" fxLayout="row" fxLayoutAlign="space-between">
-    <div> {{ pageTitle }}</div>
-    <div class="buttons" fxLayoutAlign="space-between" fxLayout="row">
+    <div class="title bold"> {{ pageTitle }}</div>
+    <div class="buttons" fxLayoutAlign="space-between" fxLayoutGap="20px" fxLayout="row">
       <div class="view-btns">
-        <span>A</span>
-        <span>B</span>
+        <button class="option-btn">
+          <svg  width="30" height="30" viewBox="0 0 30 30"><g fill="currentColor" fill-rule="evenodd"><rect
+              width="5"
+              height="21"
+              x="4" y="4"
+              rx="2"></rect><rect
+              width="5" height="21" x="13" y="4" rx="2"></rect><rect width="5" height="21" x="22" y="4"
+                                                                     rx="2"></rect></g></svg>
+        </button>
+        <button class="option-btn">
+          <svg width="30" height="30" viewBox="0 0 30 30"><g fill="currentColor" fill-rule="evenodd"><rect
+              width="8"
+              height="21"
+              x="5" y="4"
+              rx="2"></rect><rect
+              width="8" height="21" x="17" y="4" rx="2"></rect></g></svg>
+        </button>
       </div>
-      <span class="more-btn">C</span>
+      <button class="more-btn ">
+        <svg width="30" height="30" viewBox="0 0 30 30">
+          <path fill="currentColor" fill-rule="evenodd"
+                d="M22.602 15c0-1.38 1.096-2.5 2.449-2.5 1.353 0 2.449 1.12
+                      2.449 2.5s-1.096 2.5-2.449 2.5c-1.353 0-2.449-1.12-2.449-2.5zm-9.551
+                       0c0-1.38 1.096-2.5 2.449-2.5 1.353 0 2.449 1.12 2.449
+                        2.5s-1.096 2.5-2.449 2.5c-1.353 0-2.449-1.12-2.449-2.5zM3.5 15c0-1.38
+                         1.096-2.5 2.449-2.5 1.353 0 2.449 1.12 2.449 2.5s-1.096
+                      2.5-2.449 2.5C4.596 17.5 3.5 16.38 3.5 15z">
+          </path>
+        </svg>
+      </button>
     </div>
   </div>
 
   <div class="boards-row" fxLayout="row">
-    <div class="board" *ngFor="let board of taskBoards; index as i" fxLayout="column">
-      <h2 class="board-title"> {{board.name}} </h2>
-      <div class="tasks" *ngFor=" let task of board.tasks">
+    <div class="board" *ngFor="let board of taskBoards; index as boardIndex" fxLayout="column">
+      <h2 class="board-title subtitle bold"> {{board.name}} </h2>
+      <div class="tasks" *ngFor=" let task of board.tasks; index as taskIndex">
         <div class="task-container" fxLayoutAlign="center center">
           <button class="marker">
             <mat-icon svgIcon="marker" ngClass="marker-icon"></mat-icon>
           </button>
-          <div class="task" fxLayoutAlign="start center">
+          <div class="task secondary-font" fxLayoutAlign="start center">
             {{ task.name }}
           </div>
           <button class="delete-btn">
-            <mat-icon ngClass="cross-icon" svgIcon="cross"></mat-icon>
+            <mat-icon ngClass="cross-icon" svgIcon="cross" (click)="removeTask(boardIndex, taskIndex)"></mat-icon>
           </button>
         </div>
       </div>
       <div class="board-footer" fxLayout="row" fxLayoutAlign="center center">
-        <input type="text" placeholder="Type quickly" [(ngModel)]="boardControls[i].name" class="send-input">
+        <input type="text"
+               placeholder="Type quickly"
+               [(ngModel)]="boardControls[boardIndex].name"
+               (keydown)="onEnter($event, boardIndex)"
+               class="send-input">
+
         <button class="send-button" (click)="addTask(i)">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon">
-               <path
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon">
+            <path
                 d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3
                 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7
                   24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/>
