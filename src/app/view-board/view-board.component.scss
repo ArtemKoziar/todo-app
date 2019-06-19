@@ -1,23 +1,66 @@
 .container {
-  padding: 100px 50px;
+  position: relative;
+  height: 100%;
 }
 
 .header {
   position: fixed;
-  left: 250px;
+  /* todo make left indent relative to side-nav state */
+  left: calc(200px + 40px);
   right: 50px;
   top: 100px;
 }
 
+/* todo remove to theme palette*/
+.option-btn {
+  background-color: #fff;
+  border: none;
+  width: 50px;
+  height: 40px;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  cursor: pointer;
+  outline: none;
+
+  mat-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  ::ng-deep .columns-icon g {
+    transition: all 0.3s;
+    fill: #e7e7e7;
+  }
+
+  ::ng-deep .more-icon path {
+    fill: #9197a3;
+  }
+
+  &:hover {
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+
+  &:active {
+    background-color: #d8d8d8;
+    transform: translateY(1px);
+  }
+}
+
+.selected {
+  background-color: #d8d8d8;
+}
+
 .boards-row {
-  margin-top: 40px;
   position: absolute;
+  top: 100px;
+  left: 40px;
 }
 
 .board {
   position: relative;
   width: 335px;
-  height: 600px;
+  height: calc(100vh - 200px);
   margin-right: 40px;
   background: #fff;
   border-radius: 5px;
@@ -61,7 +104,7 @@
 }
 
 .delete-btn {
-  right: 42px!important;
+  right: 42px !important;
   top: 22px;
   left: auto;
   border: none;

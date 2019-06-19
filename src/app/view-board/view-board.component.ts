@@ -4,7 +4,7 @@ import { Task } from '../shared/models/models';
 @Component({
   selector: 'app-view-board',
   templateUrl: './view-board.component.html',
-  styleUrls: ['./view-board.component.css']
+  styleUrls: ['./view-board.component.scss']
 })
 export class ViewBoardComponent implements OnInit {
   public pageTitle = 'All Tasks';
