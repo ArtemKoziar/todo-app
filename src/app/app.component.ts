@@ -15,6 +15,7 @@ export class AppComponent {
     this.matIconRegistry.addSvgIcon('marker', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/marker-done.svg'));
     this.matIconRegistry.addSvgIcon('cross', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/cross-icon.svg'));
     this.matIconRegistry.addSvgIcon('more', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/more-icon.svg'));
+    this.matIconRegistry.addSvgIcon('send', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/send-icon.svg'));
     this.matIconRegistry.addSvgIcon('two_columns', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/two-columns-icon.svg'));
     this.matIconRegistry.addSvgIcon(
       'three_columns', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/three-columns-icon.svg'));
