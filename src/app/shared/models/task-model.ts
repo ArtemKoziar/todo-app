@@ -3,4 +3,5 @@ export interface Task {
   expiration?: number;
   estimate?: string;
   estimated: boolean;
+  status: boolean;
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Task } from '../shared/models/models';
+import { Task } from '../shared/models/task-model';
+import { ViewBoardService } from './view-board.service';
 
 @Component({
   selector: 'app-view-board',
@@ -17,34 +18,9 @@ export class ViewBoardComponent implements OnInit {
     {name: null}
   ];
 
-  constructor() {
-
-    this.tempTasks = [
-      {
-        name: 'today task',
-        expiration: 1558648800,
-        estimate: 'today',
-        estimated: true
-      },
-      {
-        name: 'Tomorrow task',
-        estimate: 'tomorrow',
-        expiration: 1558699200,
-        estimated: true
-      },
-      {
-        name: 'on this week',
-        estimate: 'upcoming',
-        expiration: 1558872000,
-        estimated: true
-      },
-      {
-        name: 'without estimate',
-        estimate: 'someday',
-        // expiration: 1558872000,
-        estimated: false
-      }
-    ];
+  constructor(
+    private service: ViewBoardService
+  ) {
     this.taskBoards = [
       {
         name: 'Today',
@@ -66,17 +42,19 @@ export class ViewBoardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tempTasks.map((task) => {
-      this.taskBoards.map( board => {
-        if (board.name.toLowerCase() === task.estimate ) {
-          board.tasks.push(task);
-        }
+    this.service.getTasks().subscribe(tasks => {
+      tasks.map((task) => {
+        this.taskBoards.map(board => {
+          if (board.name.toLowerCase() === task.estimate) {
+            board.tasks.push(task);
+          }
+        });
       });
     });
   }
 
   public onEnter(event, index) {
-    if (event.key === 'Enter' && event.keyCode === 13) {
+    if (event.key === 'Enter' || event.keyCode === 13) {
       this.addTask(index);
     }
   }
