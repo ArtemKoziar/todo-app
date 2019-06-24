@@ -1,10 +1,21 @@
 <div class="container">
-  <div fxLayout="row" fxLayoutAlign="space-between" class="title">
-    <span class="title-text">My lists </span> <span>I</span>
-  </div>
+
   <ul fxLayout="column" class="list">
-    <li class="list-item" *ngFor="let list of lists">
-      {{ list }}
+    <li class="list-item" fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title-text" fxFlex fxLayout="row" fxLayoutAlign="left center">
+        <mat-icon svgIcon="done" class="done-icon"></mat-icon> My lists </span>
+      <span  fxLayout="row" fxLayoutAlign="right center" fxLayoutGap="15px">
+        <mat-icon svgIcon="edit" class="edit-icon list-icon" *ngIf="!editLists; else editView"></mat-icon>
+      <ng-template #editView>
+          <mat-icon svgIcon="cross-thin" class="edit-icon list-icon" aria-label="close"></mat-icon>
+          <mat-icon svgIcon="save" class="edit-icon list-icon" aria-label="save"></mat-icon>
+      </ng-template>
+        </span>
+    </li>
+    <li class="list-item" fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let list of lists">
+      <span class="list-item-text" fxFlex fxLayout="row" fxLayoutAlign="left center">
+        <mat-icon svgIcon="drag" class="list-icon drag-icon"></mat-icon> {{ list }} </span>
+      <mat-icon svgIcon="delete" class=" list-icon"></mat-icon>
     </li>
   </ul>
 </div>

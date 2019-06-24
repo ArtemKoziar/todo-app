@@ -19,5 +19,11 @@ export class AppComponent {
     this.matIconRegistry.addSvgIcon('two_columns', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/two-columns-icon.svg'));
     this.matIconRegistry.addSvgIcon(
       'three_columns', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/three-columns-icon.svg'));
+    this.matIconRegistry.addSvgIcon('done', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/done-icon.svg'));
+    this.matIconRegistry.addSvgIcon('edit', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/pen-icon.svg'));
+    this.matIconRegistry.addSvgIcon('drag', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/drag-icon.svg'));
+    this.matIconRegistry.addSvgIcon('delete', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/delete-icon.svg'));
+    this.matIconRegistry.addSvgIcon('cross-thin', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/cross-thin-icon.svg'));
+    this.matIconRegistry.addSvgIcon('save', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/save-icon.svg'));
   }
 }
