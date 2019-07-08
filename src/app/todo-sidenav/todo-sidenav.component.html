@@ -17,6 +17,13 @@
         <mat-icon svgIcon="drag" class="list-icon drag-icon"></mat-icon> {{ list }} </span>
       <mat-icon svgIcon="delete" class=" list-icon"></mat-icon>
     </li>
+    <li class="list-item">
+      <input type="text"
+             [(ngModel)]="newList"
+             (keydown.enter)="createList()"
+             placeholder="+ New List"
+             class="new-list-input">
+    </li>
   </ul>
 </div>
 
