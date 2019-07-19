@@ -6,31 +6,36 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { ViewBoardComponent } from './view-board/view-board.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TodoToolbarComponent } from './todo-toolbar/todo-toolbar.component';
 import { TodoSidenavComponent } from './todo-sidenav/todo-sidenav.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
+import { LoginComponent } from './login/login.component';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { MainComponent } from './main/main.component';
+import { MainModule } from './main/main.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ViewBoardComponent,
-    TodoToolbarComponent,
-    TodoSidenavComponent
-  ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
     SharedModule,
-    FormsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    MainModule
+  ],
+  declarations: [
+    AppComponent,
+    LoginComponent,
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]

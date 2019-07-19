@@ -1,0 +1,33 @@
+:host {
+  width: 100%;
+  height: 64px;
+}
+
+.toolbar-container {
+  position: relative;
+  z-index: 2;
+  background-color: #fff;
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.1);
+  height: 64px;
+  padding: 15px 30px;
+}
+
+.btn {
+  font-family: "Helvetica Neue";
+  font-size: 12px;
+  text-transform: uppercase;
+  outline: none;
+  height: 32px;
+  padding: 0 15px;
+  border-radius: 16px;
+  border: 1px solid #0080ff;
+  color: #0080ff;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.btn-logout {
+  border-color: #4a4a4a;
+  color: #4a4a4a;
+}

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,6 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public appReady = true;
 
   constructor(private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer) {
@@ -25,5 +25,10 @@ export class AppComponent {
     this.matIconRegistry.addSvgIcon('delete', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/delete-icon.svg'));
     this.matIconRegistry.addSvgIcon('cross-thin', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/cross-thin-icon.svg'));
     this.matIconRegistry.addSvgIcon('save', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/save-icon.svg'));
+    this.matIconRegistry.addSvgIcon('facebook', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/facebook-icon.svg'));
+    this.matIconRegistry.addSvgIcon('google', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/google-icon.svg'));
+    this.matIconRegistry.addSvgIcon('arrow-back', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/arrow-back-icon.svg'));
+    this.matIconRegistry.addSvgIcon('hidden-password', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/hidden-password-icon.svg'));
+    this.matIconRegistry.addSvgIcon('shown-password', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/shown-password-icon.svg'));
   }
 }

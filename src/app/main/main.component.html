@@ -1,0 +1,15 @@
+<mat-toolbar class="example-header">
+  <todo-toolbar></todo-toolbar>
+</mat-toolbar>
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" opened="true" class="example-sidenav"
+               [fixedInViewport]="true" [fixedTopGap]="64"
+  >
+    <todo-sidenav></todo-sidenav>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

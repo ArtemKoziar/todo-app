@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../shared/models/task-model';
 import { ViewBoardService } from './view-board.service';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-view-board',
@@ -19,7 +21,8 @@ export class ViewBoardComponent implements OnInit {
   ];
 
   constructor(
-    private service: ViewBoardService
+    private service: ViewBoardService,
+    private fireStore: AngularFirestore
   ) {
     this.taskBoards = [
       {
@@ -39,6 +42,9 @@ export class ViewBoardComponent implements OnInit {
         tasks: []
       }
     ];
+    // this.fireStore.collection('tasks').valueChanges().subscribe(value => {
+    //   console.log(value);
+    // })
   }
 
   ngOnInit() {

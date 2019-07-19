@@ -1,0 +1,12 @@
+<svg width="40" height="40" viewBox="0 -1 40 39">
+    <g fill="none" fill-rule="evenodd">
+        <defs>
+            <mask id="myMask" x="0" y="0" width="40" height="40">
+                <rect width="40" height="40" fill="white"></rect>
+                <path fill="black"
+                      d="M31.84 16.693h-5.061v-3.391c.37-3.205 5.625-2.596 5.625-2.596l.002-.22-.002-.024V5.196h-.005c-.18-.044-10.454-2.5-12.495 5.377 0 .002 0 .005-.002.006-.004.017-.01.034-.013.052-.321.984-.3 5.495-.295 6.062h-4.387v6.03h4.66v16.405h6.783V22.723h5.189l.584-6.03h-.584"></path>
+            </mask>
+        </defs>
+        <rect width="40" height="38" fill="#fff" rx="3.2" mask="url(#myMask)"></rect>
+    </g>
+</svg>
