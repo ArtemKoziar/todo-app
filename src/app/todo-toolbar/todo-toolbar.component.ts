@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'todo-toolbar',
@@ -8,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class TodoToolbarComponent implements OnInit {
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -19,7 +21,7 @@ export class TodoToolbarComponent implements OnInit {
   }
 
   public onLogout() {
-    this.router.navigate(['']);
+    this.authService.logout();
   }
 
 }

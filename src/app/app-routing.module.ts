@@ -1,13 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ViewBoardComponent } from './view-board/view-board.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
+import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent},
-  { path: 'tasks', component: MainComponent}
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {
+    path: 'login', component: LoginComponent,
+    ...canActivate(redirectLoggedInTo(['tasks']))
+  },
+  {
+    path: 'tasks', component: MainComponent,
+    ...canActivate(redirectUnauthorizedTo(['login']))
+  },
+  {path: '**', redirectTo: 'login'}
 ];
 
 @NgModule({
@@ -19,4 +26,5 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

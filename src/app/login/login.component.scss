@@ -69,14 +69,40 @@
   line-height: 35px;
 }
 
-.back-btn {
+
+.email-container {
+  position: relative;
+
+}
+
+.password-container {
+  position: relative;
+}
+
+.back-btn, .forward-btn, .password-icon {
   position: absolute;
-  left: 0;
-  top: 7.5px;
+  cursor: pointer;
   width: 20px;
   height: 20px;
   border-radius: 50%;
+}
+
+.back-btn {
+  left: 0;
+  top: 7.5px;
   fill: #0080ff;
+}
+
+.forward-btn {
+  right: 15px;
+  top: 12px;
+  transform: rotate(180deg);
+  fill: #d8d8d8;
+}
+
+.password-icon {
+  right: 15px;
+  top: 0;
 }
 
 .subtitle {
@@ -101,17 +127,6 @@
   &::placeholder {
     color: #d8d8d8;
   }
-}
-
-.password-container {
-  position: relative;
-}
-
-.password-icon {
-  position: absolute;
-  right: 20px;
-  width: 20px;
-  height: 20px;
 }
 
 .sign-button {

@@ -29,54 +29,56 @@
       </button>
     </div>
 
+    <!--Check email form-->
     <div class="sign-container" fxLayout="column" *ngIf="authStep === 'checkEmail'">
       <div class="email-subtitle-container">
         <mat-icon svgIcon="arrow-back" class="back-btn" (click)="changeStep('chooseProvider')"></mat-icon>
         <h2 class="subtitle">Enter your email</h2>
       </div>
-      <div>
+      <div class="email-container">
         <input type="email"
                placeholder="your@email.com"
                [formControl]="emailToCheck"
                class="input"
                (keyup.enter)="checkEmail()">
+        <mat-icon svgIcon="arrow-back" class="forward-btn" (click)="checkEmail()"></mat-icon>
       </div>
     </div>
 
-    <div class="sign-container" fxLayout="column" *ngIf="authStep === 'signIn'">
+    <!--Sign Up form-->
+    <div class="sign-container" fxLayout="column" *ngIf="authStep === 'signUp'">
       <div class="email-subtitle-container">
         <mat-icon svgIcon="arrow-back" class="back-btn" (click)="changeStep('checkEmail')"></mat-icon>
         <h2 class="subtitle">Welcome</h2>
       </div>
       <div>
-        <form [formGroup]="signInForm" (ngSubmit)="signIn()">
+        <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
           <input type="email"
                  placeholder="your@email.com"
                  formControlName="email"
                  class="input">
-          <input type="text"
-                 placeholder="Your Name"
-                 formControlName="name"
-                 class="input">
           <span class="password-container">
-                <input type="password"
+                <input [type]="passwordVisible ? 'text' : 'password'"
                        placeholder="Your password"
                        formControlName="password"
                        class="input">
+            <mat-icon [svgIcon]="passwordVisible ? 'shown-password' : 'hidden-password'"
+                      (click)="passwordVisible = !passwordVisible"
+                      class="password-icon"></mat-icon>
           </span>
-          <button type="submit" [disabled]="signInForm.invalid" class="sign-button"> Create account</button>
+          <button type="submit" [disabled]="signUpForm.invalid" class="sign-button"> Create account</button>
         </form>
       </div>
     </div>
 
-
-    <div class="sign-container" fxLayout="column" *ngIf="authStep === 'signUp'">
+    <!--Sign in form-->
+    <div class="sign-container" fxLayout="column" *ngIf="authStep === 'signIn'">
       <div class="email-subtitle-container">
         <mat-icon svgIcon="arrow-back" class="back-btn" (click)="changeStep('checkEmail')"></mat-icon>
         <h2 class="subtitle">Welcome back!</h2>
       </div>
       <div>
-        <form [formGroup]="signUpForm">
+        <form [formGroup]="signInForm" (ngSubmit)="login()">
           <input type="email"
                  placeholder="your@email.com"
                  formControlName="email"
@@ -88,7 +90,7 @@
                           class="input">
           </span>
           <div fxLayoutAlign="center"> <a class="forgot-link"> Forgot Password? </a> </div>
-          <button type="submit" [disabled]="signUpForm.invalid" class="sign-button"> Create account</button>
+          <button type="submit" [disabled]="signInForm.invalid" class="sign-button"> Sign In</button>
         </form>
       </div>
     </div>
