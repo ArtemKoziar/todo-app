@@ -10,10 +10,11 @@ import { AuthService } from '../shared/services/auth.service';
 export class TodoToolbarComponent implements OnInit {
 
   constructor(private router: Router,
-              private authService: AuthService) {
+              public authService: AuthService) {
   }
 
   ngOnInit() {
+
   }
 
   public onLogin() {
@@ -23,5 +24,4 @@ export class TodoToolbarComponent implements OnInit {
   public onLogout() {
     this.authService.logout();
   }
-
 }

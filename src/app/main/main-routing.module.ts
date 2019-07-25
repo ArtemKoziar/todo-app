@@ -5,14 +5,14 @@ import { MainComponent } from './main.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent, children: [
-      { path: 'view', component: ViewBoardComponent}
+      { path: '', component: ViewBoardComponent}
     ]}
 ];
 
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule

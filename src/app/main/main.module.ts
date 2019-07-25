@@ -18,6 +18,9 @@ import { MainComponent } from './main.component';
     ViewBoardComponent,
     TodoToolbarComponent,
     TodoSidenavComponent,
+  ],
+  providers: [
+
   ]
 })
 export class MainModule { }

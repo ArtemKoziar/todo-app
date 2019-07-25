@@ -29,7 +29,7 @@ import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
   providers: [
     ViewBoardService,
     AuthService,
-    AngularFireAuthGuard
+    AngularFireAuthGuard,
   ],
   declarations: [TodoCarouselComponent, EmailValidatorDirective]
 })

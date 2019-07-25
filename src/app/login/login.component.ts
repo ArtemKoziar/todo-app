@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FirebaseApp } from '@angular/fire';
-import * as fire from 'firebase/app';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
 
@@ -41,11 +40,6 @@ export class LoginComponent implements OnInit {
 
   public changeStep(step) {
     this.authStep = step;
-  }
-
-  public socialNetworkSignin(network) {
-    const provider = network === 'google' ? new fire.auth.GoogleAuthProvider() : new fire.auth.FacebookAuthProvider();
-    this.firebase.auth().signInWithPopup(provider);
   }
 
   public login() {

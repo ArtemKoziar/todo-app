@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { FirebaseApp } from '@angular/fire';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { User } from 'firebase';
 
 @Injectable()
 export class AuthService {
+
   constructor(private firebase: FirebaseApp,
-              private router: Router) {
-  }
+              private router: Router,
+              private af: AngularFireAuth) {  }
 
   public signUpWithEmailAndPassword(email, password) {
     this.firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -34,4 +38,7 @@ export class AuthService {
     });
   }
 
+  public isAuthenticated(): Observable<User> {
+    return this.af.authState;
+  }
 }

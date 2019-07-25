@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { MainComponent } from './main/main.component';
 import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
 const routes: Routes = [
@@ -11,7 +10,7 @@ const routes: Routes = [
     ...canActivate(redirectLoggedInTo(['tasks']))
   },
   {
-    path: 'tasks', component: MainComponent,
+    path: 'tasks', loadChildren: () => import('./main/main.module').then(mod => mod.MainModule),
     ...canActivate(redirectUnauthorizedTo(['login']))
   },
   {path: '**', redirectTo: 'login'}
