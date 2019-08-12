@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FirebaseApp } from '@angular/fire';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'firebase';
 
@@ -10,7 +10,8 @@ export class AuthService {
 
   constructor(private firebase: FirebaseApp,
               private router: Router,
-              private af: AngularFireAuth) {  }
+              private af: AngularFireAuth) {
+  }
 
   public signUpWithEmailAndPassword(email, password) {
     this.firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -36,6 +37,10 @@ export class AuthService {
     }).catch(err => {
       console.log(err);
     });
+  }
+
+  public getUserId(): string {
+    return this.af.auth.currentUser.uid;
   }
 
   public isAuthenticated(): Observable<User> {

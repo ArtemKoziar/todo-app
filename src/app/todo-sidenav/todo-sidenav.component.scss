@@ -16,10 +16,16 @@
   padding: 0 20px 0 30px;
 }
 
-.list-item-text, .new-list-input::placeholder {
+.list-item-container, .new-list-input::placeholder {
+  position: relative;
   color: #898989;
   font-size: 16px;
   font-family: 'Helvetica Neue';
+}
+
+.list-item-text {
+  position: absolute;
+  left: 40px;
 }
 
 .title-text {
@@ -52,6 +58,10 @@
 
   &[aria-label='close'] {
     background-color: #ff001f;
+  }
+
+  ::ng-deep &.to-delete path {
+    color: #ff001f;
   }
 
   ::ng-deep &[aria-label='save'] path,
