@@ -3,6 +3,7 @@ import { SidenavService } from './sidenav.service';
 import { AngularFirestore, AngularFirestoreCollection, DocumentData } from '@angular/fire/firestore';
 import { AuthService } from '../shared/services/auth.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'todo-sidenav',
@@ -18,7 +19,8 @@ export class TodoSidenavComponent implements OnInit {
 
   constructor(private service: SidenavService,
               private firestore: AngularFirestore,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private router: Router) {
     this.listCollection = this.firestore.collection('users').doc(this.authService.getUserId()).collection('lists');
   }
 
@@ -50,6 +52,10 @@ export class TodoSidenavComponent implements OnInit {
     this.service.deleteLists(this.listsToRemove);
     this.listsToRemove = {};
     this.editLists = false;
+  }
+
+  public selectList(listName) {
+    this.router.navigate([`tasks/${listName}`]);
   }
 }
 

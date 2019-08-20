@@ -1,40 +1,47 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Task } from '../shared/models/task-model';
+import { ActivatedRoute, ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { Resolver } from '@angular/core/testing/src/resolvers';
+import { AuthService } from '../shared/services/auth.service';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 @Injectable()
 export class ViewBoardService {
-  public getTasks(): Observable<Task[]> {
-    const tasks = [
-      {
-        name: 'today task',
-        expiration: 1558648800,
-        estimate: 'today',
-        estimated: true,
-        status: false
-      },
-      {
-        name: 'Tomorrow task',
-        estimate: 'tomorrow',
-        expiration: 1558699200,
-        estimated: true,
-        status: false
-      },
-      {
-        name: 'on this week',
-        estimate: 'upcoming',
-        expiration: 1558872000,
-        estimated: true,
-        status: false
-      },
-      {
-        name: 'without estimate',
-        estimate: 'someday',
-        // expiration: 1558872000,
-        estimated: false,
-        status: false
-      }
-    ];
-    return of(tasks);
+  constructor(private firestore: AngularFirestore,
+              private authService: AuthService) {
+  }
+
+  public getTasks(list): AngularFirestoreCollection<any> {
+    return this.firestore.collection(`users/${this.authService.getUserId()}/lists/${list}/tasks`);
+  }
+
+  public createTask(task, list) {
+    return this.firestore.collection(`users/${this.authService.getUserId()}/lists/${list}/tasks`).doc(task.id).set(task).then(res => {
+      console.log(res);
+      return res;
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+
+  public changeTask(task, list) {
+    this.firestore.collection(`users/${this.authService.getUserId()}/lists/${list}/tasks`).doc(task.id).set(task).then(res => {
+      console.log('res', res);
+    }).catch(err => {
+      console.log('err', err);
+    });
   }
 }
+//
+// @Injectable()
+// export class ListResolver implements Resolve<boolean> {
+//   constructor(private authService: AuthService,
+//               private firestore: AngularFirestore) {
+//   }
+//
+//   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+//     return undefined;
+//   }
+//
+// }

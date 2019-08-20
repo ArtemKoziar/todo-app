@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'tasks', loadChildren: () => import('./main/main.module').then(mod => mod.MainModule),
-    ...canActivate(redirectUnauthorizedTo(['login']))
+    ...canActivate(redirectUnauthorizedTo(['login'])),
   },
   {path: '**', redirectTo: 'login'}
 ];

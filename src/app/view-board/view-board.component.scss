@@ -114,15 +114,15 @@
   display: flex;
   width: 10px;
   height: 10px;
-  transition: 0.3s;
-  ::ng-deep path {
-    transition: 0.3s;
-    color: #ffffff;
+  opacity: 1;
+  &.checked {
+    opacity: 0;
   }
+
 }
 
 .cross-icon {
-  display: none;
+  display: flex;
   width: 19px;
   height: 19px;
   ::ng-deep path {

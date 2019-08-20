@@ -17,7 +17,7 @@
     </li>
     <li class="list-item" fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let list of lists$ | async">
       <span class="list-item-container" fxFlex fxLayout="row" fxLayoutAlign="left center">
-        <span class="list-item-text"> {{ list.listName }} </span>
+        <span class="list-item-text" (click)="selectList(list.listName)"> {{ list.listName }} </span>
 
         <ng-container *ngIf="editLists">
           <div fxLayout="row" fxLayoutAlign="space-between center" fxFlexFill="">

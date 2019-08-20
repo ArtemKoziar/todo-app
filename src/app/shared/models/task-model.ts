@@ -1,7 +1,14 @@
 export interface Task {
-  name: string;
+  taskName: string;
   expiration?: number;
   estimate?: string;
-  estimated: boolean;
-  status: boolean;
+  done: boolean;
+  id: string;
+}
+
+export interface TasksArray {
+  today: Task[];
+  tomorrow: Task[];
+  upcoming: Task[];
+  someday: Task[];
 }

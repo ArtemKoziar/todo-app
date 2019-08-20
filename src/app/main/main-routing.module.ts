@@ -3,10 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { ViewBoardComponent } from '../view-board/view-board.component';
 import { MainComponent } from './main.component';
 
+
 const routes: Routes = [
-  { path: '', component: MainComponent, children: [
-      { path: '', component: ViewBoardComponent}
-    ]}
+  {
+    path: '', component: MainComponent, children: [
+      {path: '', component: ViewBoardComponent},
+      {
+        path: ':list', component: ViewBoardComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({
@@ -18,4 +24,5 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class MainRoutingModule { }
+export class MainRoutingModule {
+}

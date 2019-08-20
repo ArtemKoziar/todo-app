@@ -11,16 +11,16 @@ import { MainComponent } from './main.component';
   imports: [
     CommonModule,
     MainRoutingModule,
-    SharedModule,
+    SharedModule
   ],
   declarations: [
     MainComponent,
     ViewBoardComponent,
     TodoToolbarComponent,
-    TodoSidenavComponent,
+    TodoSidenavComponent
   ],
   providers: [
-
   ]
 })
-export class MainModule { }
+export class MainModule {
+}
