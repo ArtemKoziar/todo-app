@@ -4,143 +4,44 @@
     <div class="buttons" fxLayoutAlign="space-between" fxLayoutGap="20px" fxLayout="row">
       <div class="view-btns">
         <button class="option-btn selected" fxFlex fxLayoutAlign="center">
-        <mat-icon svgIcon="three_columns" class="columns-icon"></mat-icon>
+          <mat-icon svgIcon="three_columns" class="columns-icon"></mat-icon>
         </button>
         <button class="option-btn" fxFlex fxLayoutAlign="center">
           <mat-icon svgIcon="two_columns" class="columns-icon"></mat-icon>
         </button>
       </div>
       <button class="option-btn" fxFlex fxLayoutAlign="center">
-       <mat-icon svgIcon="more" class="more-icon"></mat-icon>
+        <mat-icon svgIcon="more" class="more-icon"></mat-icon>
       </button>
     </div>
   </div>
 
-  <!--TODAY-->
-
   <div class="boards-row" fxLayout="row">
-    <div class="board" fxLayout="column">
-      <h2 class="board-title subtitle bold"> Today </h2>
-      <div class="tasks" *ngFor="let task of tasks.today; index as id">
+    <div class="board" fxLayout="column" *ngFor="let board of tasks | keyvalue : orderByDay">
+      <h2 class="board-title subtitle bold"> {{ board.key }} </h2>
+      <div class="tasks" *ngFor="let task of board.value">
         <div class="task-container" fxLayoutAlign="center center">
           <button class="marker-btn" fxFlex fxLayoutAlign="center center" (click)="markTask(task)">
             <mat-icon svgIcon="marker" class="marker-icon" [ngClass]="!task.done ? 'checked' : ''"></mat-icon>
           </button>
 
-          <!--todo add ... view if string is too long-->
           <p class="task" fxLayoutAlign="start center">
             {{ task.taskName }}
           </p>
           <button class="delete-btn" fxFlex fxLayoutAlign="center center" *ngIf="task.done">
-            <mat-icon class="cross-icon" svgIcon="cross" (click)="removeTask(id)"></mat-icon>
+            <mat-icon class="cross-icon" svgIcon="cross" (click)="removeTask(task.id)"></mat-icon>
           </button>
         </div>
       </div>
       <div class="board-footer" fxLayout="row" fxLayoutAlign="center center">
         <input type="text"
                placeholder="Click to quickly add a task"
-               [(ngModel)]="todayListControl"
-               (keydown.enter)="addTask( 'today', todayListControl)"
+               [(ngModel)]="boardControls[board.key]"
+               (keydown.enter)="addTask(board.key)"
                class="send-input">
 
-        <button class="send-button" (click)="addTask('today', todayListControl)">
-          <mat-icon svgIcon='send' class="send-icon"> </mat-icon>
-        </button>
-      </div>
-    </div>
-
-    <!--TOMORROW-->
-
-    <div class="board" fxLayout="column">
-      <h2 class="board-title subtitle bold"> Tomorrow </h2>
-      <div class="tasks" *ngFor="let task of tasks.tomorrow; index as id">
-        <div class="task-container" fxLayoutAlign="center center">
-          <button class="marker-btn" fxFlex fxLayoutAlign="center center">
-            <mat-icon svgIcon="marker" class="marker-icon"></mat-icon>
-          </button>
-
-          <!--todo add ... view if string is too long-->
-          <p class="task" fxLayoutAlign="start center">
-            {{ task.taskName }}
-          </p>
-          <button class="delete-btn" fxFlex fxLayoutAlign="center center">
-            <mat-icon class="cross-icon" svgIcon="cross" (click)="removeTask(id)"></mat-icon>
-          </button>
-        </div>
-      </div>
-      <div class="board-footer" fxLayout="row" fxLayoutAlign="center center">
-        <input type="text"
-               placeholder="Click to quickly add a task"
-               [(ngModel)]="tomorrowListControl"
-               (keydown.enter)="addTask('tomorrow', tomorrowListControl)"
-               class="send-input">
-
-        <button class="send-button" (click)="addTask('tomorrow', tomorrowListControl)">
-          <mat-icon svgIcon='send' class="send-icon"> </mat-icon>
-        </button>
-      </div>
-    </div>
-
-    <!--UPCOMING-->
-
-    <div class="board" fxLayout="column">
-      <h2 class="board-title subtitle bold"> Upcoming </h2>
-      <div class="tasks" *ngFor="let task of tasks.upcoming; index as id">
-        <div class="task-container" fxLayoutAlign="center center">
-          <button class="marker-btn" fxFlex fxLayoutAlign="center center">
-            <mat-icon svgIcon="marker" class="marker-icon"></mat-icon>
-          </button>
-
-          <!--todo add ... view if string is too long-->
-          <p class="task" fxLayoutAlign="start center">
-            {{ task.taskName }}
-          </p>
-          <button class="delete-btn" fxFlex fxLayoutAlign="center center">
-            <mat-icon class="cross-icon" svgIcon="cross" (click)="removeTask(id)"></mat-icon>
-          </button>
-        </div>
-      </div>
-      <div class="board-footer" fxLayout="row" fxLayoutAlign="center center">
-        <input type="text"
-               placeholder="Click to quickly add a task"
-               [(ngModel)]="upcomingListControl"
-               (keydown.enter)="addTask( 'upcoming', upcomingListControl)"
-               class="send-input">
-
-        <button class="send-button" (click)="addTask('upcoming', upcomingListControl)">
-          <mat-icon svgIcon='send' class="send-icon"> </mat-icon>
-        </button>
-      </div>
-    </div>
-
-    <!--SOMEDAY-->
-
-    <div class="board" fxLayout="column">
-      <h2 class="board-title subtitle bold"> Someday </h2>
-      <div class="tasks" *ngFor="let task of tasks.someday; index as id">
-        <div class="task-container" fxLayoutAlign="center center">
-          <button class="marker-btn" fxFlex fxLayoutAlign="center center">
-            <mat-icon svgIcon="marker" class="marker-icon"></mat-icon>
-          </button>
-
-          <!--todo add ... view if string is too long-->
-          <p class="task" fxLayoutAlign="start center">
-            {{ task.taskName }}
-          </p>
-          <button class="delete-btn" fxFlex fxLayoutAlign="center center">
-            <mat-icon class="cross-icon" svgIcon="cross" (click)="removeTask(id)"></mat-icon>
-          </button>
-        </div>
-      </div>
-      <div class="board-footer" fxLayout="row" fxLayoutAlign="center center">
-        <input type="text"
-               placeholder="Click to quickly add a task"
-               [(ngModel)]="somedayListControl"
-               (keydown.enter)="addTask('someday', somedayListControl)"
-               class="send-input">
-
-        <button class="send-button" (click)="addTask('someday', somedayListControl)">
-          <mat-icon svgIcon='send' class="send-icon"> </mat-icon>
+        <button class="send-button" (click)="addTask(board.key)">
+          <mat-icon svgIcon='send' class="send-icon"></mat-icon>
         </button>
       </div>
     </div>

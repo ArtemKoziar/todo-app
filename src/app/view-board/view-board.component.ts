@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from '../shared/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Task } from '../shared/models/task-model';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'app-view-board',
@@ -18,10 +19,12 @@ export class ViewBoardComponent implements OnInit {
     upcoming: [],
     someday: []
   };
-  public todayListControl: string;
-  public tomorrowListControl: string;
-  public upcomingListControl: string;
-  public somedayListControl: string;
+  public boardControls = {
+    today: null,
+    tomorrow: null,
+    upcoming: null,
+    someday: null
+  };
 
   constructor(
     private service: ViewBoardService,
@@ -42,63 +45,37 @@ export class ViewBoardComponent implements OnInit {
       this.tasks.someday = [];
       tasks.forEach( (task: Task) => {
         if (task) {
-          task.estimate = this.expirationToEstimate(task.expiration);
+          task.estimate = this.service.expirationToEstimate(task.expiration);
           this.tasks[task.estimate.toLowerCase()].push(task);
         }
       });
     });
   }
 
-  public addTask(estimate: string, control: string) {
-    const expiration = this.estimateToExpiration(estimate);
+  public addTask(estimate: string): void {
+    const expiration = this.service.estimateToExpiration(estimate);
     const task: Task = {
-      taskName: control,
+      taskName: this.boardControls[estimate],
       estimate: estimate,
       expiration: expiration,
       done: false,
       id: this.firestore.createId()
     };
-    this.service.createTask(task, this.listTitle)
+    this.service.createTask(task, this.listTitle);
+    this.boardControls[estimate] = null;
   }
 
-  private estimateToExpiration(estimate) {
-    const currentTime = new Date().getTime();
-    const day = {
-      today: currentTime + 86400000,
-      tomorrow: currentTime + (86400000 * 2),
-      upcoming: currentTime + (86400000 * 8),
-      someday: -1
-    };
-    return day[estimate];
+  public removeTask(id: string): void {
+    this.service.removeTask(id, this.listTitle);
   }
 
-  private expirationToEstimate(expiration) {
-    const currentTime = new Date().getTime(),
-          today = currentTime + 86400000,
-          tomorrow = currentTime + (86400000 * 2);
-    let estimate;
-    if (expiration > tomorrow) {
-      estimate = 'upcoming';
-    }
-    if ( expiration > today && expiration < tomorrow ) {
-      estimate = 'tomorrow';
-    }
-    if (expiration < today && expiration > 0) {
-      estimate = 'today';
-    }
-    if (expiration <= 0) {
-      estimate = 'someday';
-    }
-    return estimate;
-  }
-
-  public removeTask(board, task) {
-    // this.taskBoards[board].tasks.splice(task, 1);
-  }
-
-  public markTask(task) {
+  public markTask(task): void {
     task.done = !task.done;
-    console.log(task);
     this.service.changeTask(task, this.listTitle);
+  }
+
+  public orderByDay(a: KeyValue<string, Task[]>, b: KeyValue<string, Task[]>): number {
+    const days = ['today', 'tomorrow', 'upcoming', 'someday'];
+    return days.indexOf(a.key) > days.indexOf(b.key) ? 1 : (days.indexOf(b.key) > days.indexOf(a.key) ? 1 : 0);
   }
 }
