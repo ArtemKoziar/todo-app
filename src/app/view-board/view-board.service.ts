@@ -4,7 +4,12 @@ import { Task } from '../shared/models/task-model';
 import { ActivatedRoute, ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Resolver } from '@angular/core/testing/src/resolvers';
 import { AuthService } from '../shared/services/auth.service';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreCollectionGroup,
+  AngularFirestoreDocument
+} from '@angular/fire/firestore';
 
 @Injectable()
 export class ViewBoardService {
@@ -12,8 +17,13 @@ export class ViewBoardService {
               private authService: AuthService) {
   }
 
-  public getTasks(list): AngularFirestoreCollection<any> {
-    return this.firestore.collection(`users/${this.authService.getUserId()}/lists/${list}/tasks`);
+  public getTasks(list): AngularFirestoreCollection<any> | AngularFirestoreCollectionGroup<any> {
+    if (list !== 'All tasks') {
+      console.log('collection');
+      return this.firestore.collection(`users/${this.authService.getUserId()}/lists/${list}/tasks`);
+    }
+    console.log('collection group');
+    return this.firestore.collectionGroup('tasks');
   }
 
   public createTask(task, list) {
@@ -34,8 +44,8 @@ export class ViewBoardService {
     });
   }
 
-  public changeTask(task, list) {
-    this.firestore.collection(`users/${this.authService.getUserId()}/lists/${list}/tasks`).doc(task.id).set(task).then(res => {
+  public changeTask(task) {
+    this.firestore.collection(`users/${this.authService.getUserId()}/lists/${task.list}/tasks`).doc(task.id).set(task).then(res => {
       console.log('res', res);
     }).catch(err => {
       console.log('err', err);
@@ -50,7 +60,7 @@ export class ViewBoardService {
     if (expiration > tomorrow) {
       estimate = 'upcoming';
     }
-    if ( expiration > today && expiration < tomorrow ) {
+    if (expiration > today && expiration < tomorrow) {
       estimate = 'tomorrow';
     }
     if (expiration < today && expiration > 0) {
@@ -73,6 +83,7 @@ export class ViewBoardService {
     return day[estimate];
   }
 }
+
 //
 // @Injectable()
 // export class ListResolver implements Resolve<boolean> {

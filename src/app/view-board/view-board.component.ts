@@ -34,22 +34,25 @@ export class ViewBoardComponent implements OnInit {
   ) {
     this.route.params.subscribe(param => {
       this.listTitle = param.list;
+      console.log('constructor');
+      this.service.getTasks( this.listTitle).valueChanges().subscribe(tasks => {
+        console.log('tasks', this.listTitle, tasks);
+        this.tasks.today = [];
+        this.tasks.tomorrow = [];
+        this.tasks.upcoming = [];
+        this.tasks.someday = [];
+        tasks.forEach( (task: Task) => {
+          if (task) {
+            task.estimate = this.service.expirationToEstimate(task.expiration);
+            this.tasks[task.estimate.toLowerCase()].push(task);
+          }
+        });
+      });
     });
   }
 
   ngOnInit() {
-    this.service.getTasks(this.listTitle).valueChanges().subscribe(tasks => {
-      this.tasks.today = [];
-      this.tasks.tomorrow = [];
-      this.tasks.upcoming = [];
-      this.tasks.someday = [];
-      tasks.forEach( (task: Task) => {
-        if (task) {
-          task.estimate = this.service.expirationToEstimate(task.expiration);
-          this.tasks[task.estimate.toLowerCase()].push(task);
-        }
-      });
-    });
+
   }
 
   public addTask(estimate: string): void {
@@ -59,19 +62,20 @@ export class ViewBoardComponent implements OnInit {
       estimate: estimate,
       expiration: expiration,
       done: false,
-      id: this.firestore.createId()
+      id: this.firestore.createId(),
+      list: this.listTitle
     };
     this.service.createTask(task, this.listTitle);
     this.boardControls[estimate] = null;
   }
 
-  public removeTask(id: string): void {
-    this.service.removeTask(id, this.listTitle);
+  public removeTask(id: string, list: string): void {
+    this.service.removeTask(id, list);
   }
 
   public markTask(task): void {
     task.done = !task.done;
-    this.service.changeTask(task, this.listTitle);
+    this.service.changeTask(task);
   }
 
   public orderByDay(a: KeyValue<string, Task[]>, b: KeyValue<string, Task[]>): number {

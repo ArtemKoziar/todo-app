@@ -29,7 +29,7 @@
             {{ task.taskName }}
           </p>
           <button class="delete-btn" fxFlex fxLayoutAlign="center center" *ngIf="task.done">
-            <mat-icon class="cross-icon" svgIcon="cross" (click)="removeTask(task.id)"></mat-icon>
+            <mat-icon class="cross-icon" svgIcon="cross" (click)="removeTask(task.id, task.list)"></mat-icon>
           </button>
         </div>
       </div>

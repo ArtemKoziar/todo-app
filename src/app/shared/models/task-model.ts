@@ -4,6 +4,7 @@ export interface Task {
   estimate?: string;
   done: boolean;
   id: string;
+  list: string;
 }
 
 export interface TasksArray {
