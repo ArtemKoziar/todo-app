@@ -25,8 +25,7 @@ import { MainModule } from './main/main.module';
     AngularFirestoreModule,
     AngularFireAuthModule,
     SharedModule,
-    AppRoutingModule,
-    MainModule,
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,

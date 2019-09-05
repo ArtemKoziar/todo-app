@@ -18,6 +18,7 @@ export class ViewBoardService {
   }
 
   public getTasks(list): AngularFirestoreCollection<any> | AngularFirestoreCollectionGroup<any> {
+    console.log('get tasks');
     if (list !== 'All tasks') {
       console.log('collection');
       return this.firestore.collection(`users/${this.authService.getUserId()}/lists/${list}/tasks`);
@@ -28,7 +29,7 @@ export class ViewBoardService {
 
   public createTask(task, list) {
     return this.firestore.collection(`users/${this.authService.getUserId()}/lists/${list}/tasks`).doc(task.id).set(task).then(res => {
-      console.log(res);
+      // console.log(res);
       return res;
     }).catch(err => {
       console.log(err);
@@ -46,7 +47,7 @@ export class ViewBoardService {
 
   public changeTask(task) {
     this.firestore.collection(`users/${this.authService.getUserId()}/lists/${task.list}/tasks`).doc(task.id).set(task).then(res => {
-      console.log('res', res);
+      // console.log('res', res);
     }).catch(err => {
       console.log('err', err);
     });
