@@ -25,7 +25,10 @@
 
 .list-item-text {
   position: absolute;
-  left: 40px;
+  padding-left: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
 }
 
 .title-text {

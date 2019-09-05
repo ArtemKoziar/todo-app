@@ -7,7 +7,7 @@ import { MainComponent } from './main.component';
 const routes: Routes = [
   {
     path: '', component: MainComponent, children: [
-      {path: '', redirectTo: 'tasks/All%20tasks', pathMatch: 'full'},
+      { path: '', redirectTo: 'All%20tasks', pathMatch: 'full'},
       {
         path: ':list', component: ViewBoardComponent
       }
