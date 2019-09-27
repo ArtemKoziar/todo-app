@@ -8,13 +8,15 @@ import { Router } from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
+class AuthServiceStub {
+}
+
 fdescribe('LoginComponent', () => {
   let component: LoginComponent;
   let template: HTMLElement;
   let fixture: ComponentFixture<LoginComponent>;
+  const firebaseAppSpy = jasmine.createSpyObj('FirebaseApp', ['auth']);
   beforeEach(async(() => {
-    const firebaseAppSpy = jasmine.createSpyObj('FirebaseApp', ['auth']);
-    const authServiceSpy = jasmine.createSpyObj('AuthService', ['loginWithEmailAndPassword', 'signUpWithEmailAndPassword'])
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
       imports: [SharedModule, MaterialModule],
@@ -23,7 +25,7 @@ fdescribe('LoginComponent', () => {
           provide: FirebaseApp, useValue: firebaseAppSpy
         },
         {
-          provide: AuthService, useValue: authServiceSpy
+          provide: AuthService, useClass: AuthServiceStub
         },
         {
           provide: Router, useClass: class {
@@ -87,11 +89,5 @@ fdescribe('LoginComponent', () => {
     expect(component.registerForm.valid).toBeTruthy();
     fixture.detectChanges();
     expect(submitBtn.disabled).toBeFalsy('button not to be disabled');
-  });
-
-  it('check register method', () => {
-    component.register();
-    fixture.detectChanges();
-    expect(AuthService.signUpWithEmailAndPassword)
   });
 });
