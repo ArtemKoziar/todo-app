@@ -13,8 +13,8 @@ export class LoginComponent implements OnInit {
   public passwordVisible = false;
   public authStep: string;
   public emailToCheck = new FormControl(null, Validators.email);
-  public signUpForm: FormGroup;
-  public signInForm: FormGroup;
+  public registerForm: FormGroup;
+  public loginForm: FormGroup;
 
   constructor(private fb: FormBuilder,
               private firebase: FirebaseApp,
@@ -25,13 +25,13 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.authStep = 'chooseProvider';
 
-    this.signInForm = this.fb.group({
-      email: new FormControl(null, [Validators.required, Validators.email]),
+    this.loginForm = this.fb.group({
+      email: new FormControl('artem', [Validators.required, Validators.email]),
       password: new FormControl(null,
         [Validators.required, Validators.minLength(6), Validators.maxLength(50)])
     });
 
-    this.signUpForm = this.fb.group({
+    this.registerForm = this.fb.group({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null,
         [Validators.required, Validators.minLength(6), Validators.maxLength(50)])
@@ -43,14 +43,14 @@ export class LoginComponent implements OnInit {
   }
 
   public login() {
-    if (this.signInForm.valid) {
-      this.authService.loginWithEmailAndPassword(this.signInForm.get('email').value, this.signInForm.get('password').value);
+    if (this.loginForm.valid) {
+      this.authService.loginWithEmailAndPassword(this.loginForm.get('email').value, this.loginForm.get('password').value);
     }
   }
 
-  public signUp() {
-    if (this.signUpForm.valid) {
-      this.authService.signUpWithEmailAndPassword(this.signUpForm.get('email').value, this.signUpForm.get('password').value);
+  public register() {
+    if (this.registerForm.valid) {
+      this.authService.signUpWithEmailAndPassword(this.registerForm.get('email').value, this.registerForm.get('password').value);
     }
   }
 
@@ -58,9 +58,9 @@ export class LoginComponent implements OnInit {
     if (this.emailToCheck.valid) {
       this.firebase.auth().fetchSignInMethodsForEmail(this.emailToCheck.value).then(result => {
         if (result.length) {
-          this.authStep = 'signIn';
+          this.authStep = 'login';
         } else {
-          this.authStep = 'signUp';
+          this.authStep = 'register';
         }
       }, (error) => {
       });

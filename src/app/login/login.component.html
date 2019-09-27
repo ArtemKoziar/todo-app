@@ -46,13 +46,13 @@
     </div>
 
     <!--Sign Up form-->
-    <div class="sign-container" fxLayout="column" *ngIf="authStep === 'signUp'">
+    <div class="sign-container" fxLayout="column" *ngIf="authStep === 'register'">
       <div class="email-subtitle-container">
         <mat-icon svgIcon="arrow-back" class="back-btn" (click)="changeStep('checkEmail')"></mat-icon>
         <h2 class="subtitle">Welcome</h2>
       </div>
       <div>
-        <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
           <input type="email"
                  placeholder="your@email.com"
                  formControlName="email"
@@ -66,19 +66,19 @@
                       (click)="passwordVisible = !passwordVisible"
                       class="password-icon"></mat-icon>
           </span>
-          <button type="submit" [disabled]="signUpForm.invalid" class="sign-button"> Create account</button>
+          <button type="submit" [disabled]="registerForm.invalid" class="sign-button"> Create account</button>
         </form>
       </div>
     </div>
 
     <!--Sign in form-->
-    <div class="sign-container" fxLayout="column" *ngIf="authStep === 'signIn'">
+    <div class="sign-container" fxLayout="column" *ngIf="authStep === 'login'">
       <div class="email-subtitle-container">
         <mat-icon svgIcon="arrow-back" class="back-btn" (click)="changeStep('checkEmail')"></mat-icon>
         <h2 class="subtitle">Welcome back!</h2>
       </div>
       <div>
-        <form [formGroup]="signInForm" (ngSubmit)="login()">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
           <input type="email"
                  placeholder="your@email.com"
                  formControlName="email"
@@ -90,7 +90,7 @@
                           class="input">
           </span>
           <div fxLayoutAlign="center"> <a class="forgot-link"> Forgot Password? </a> </div>
-          <button type="submit" [disabled]="signInForm.invalid" class="sign-button"> Sign In</button>
+          <button type="submit" [disabled]="loginForm.invalid" class="sign-button"> Sign In</button>
         </form>
       </div>
     </div>
