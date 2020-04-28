@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyBiwuz6nuQR0seIbmRr69mmee9DIw-3u_k',
+    apiKey: 'AIzaSyCTqu7JS1qYDpLMKfKnYVP2tTrjT1bfDfo',
     authDomain: 'todo-tasks-manager.firebaseapp.com',
     databaseURL: 'https://todo-tasks-manager.firebaseio.com',
     projectId: 'todo-tasks-manager',
     storageBucket: 'todo-tasks-manager.appspot.com',
     messagingSenderId: '142799446865',
-    appId: '1:142799446865:web:2190334d01 f0dd9b'
+    appId: '1:142799446865:web:2190334d01f0dd9b'
   }
 };
 /*
