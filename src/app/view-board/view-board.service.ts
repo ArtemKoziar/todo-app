@@ -1,15 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Task } from '../shared/models/task-model';
-import { ActivatedRoute, ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { Resolver } from '@angular/core/testing/src/resolvers';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreCollectionGroup } from '@angular/fire/firestore';
 import { AuthService } from '../shared/services/auth.service';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-  AngularFirestoreCollectionGroup,
-  AngularFirestoreDocument
-} from '@angular/fire/firestore';
 
 @Injectable()
 export class ViewBoardService {

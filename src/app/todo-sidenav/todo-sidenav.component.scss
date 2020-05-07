@@ -51,7 +51,7 @@
   height: 24px;
   border-radius: 50%;
 
-  /deep/ path {
+  ::ng-deep path {
     color: rgb(74, 74, 74);
   }
 
@@ -63,12 +63,12 @@
     background-color: #ff001f;
   }
 
-  /deep/ &.to-delete path {
+  ::ng-deep &.to-delete path {
     color: #ff001f;
   }
 
-  /deep/ &[aria-label='save'] path,
-  /deep/ &[aria-label='close'] path{
+  ::ng-deep &[aria-label='save'] path,
+  ::ng-deep &[aria-label='close'] path{
     color: #fff;
   }
 }
