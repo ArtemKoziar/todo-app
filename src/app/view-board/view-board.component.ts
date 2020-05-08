@@ -68,29 +68,6 @@ export class ViewBoardComponent implements OnInit, OnDestroy {
 
   }
 
-  public addTask(estimate: string): void {
-    const expiration = this.service.estimateToExpiration(estimate);
-    const task: Task = {
-      taskName: this.boardControls[estimate],
-      estimate: estimate,
-      expiration: expiration,
-      done: false,
-      id: this.firestore.createId(),
-      list: this.listTitle
-    };
-    this.service.createTask(task, this.listTitle);
-    this.boardControls[estimate] = null;
-  }
-
-  public removeTask(id: string, list: string): void {
-    this.service.removeTask(id, list);
-  }
-
-  public markTask(task): void {
-    task.done = !task.done;
-    this.service.changeTask(task);
-  }
-
   public orderByDay(a: KeyValue<string, Task[]>, b: KeyValue<string, Task[]>): number {
     const days = ['today', 'tomorrow', 'upcoming', 'someday'];
     return days.indexOf(a.key) > days.indexOf(b.key) ? 1 : (days.indexOf(b.key) > days.indexOf(a.key) ? 1 : 0);

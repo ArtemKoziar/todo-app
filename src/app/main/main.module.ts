@@ -1,21 +1,21 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ViewBoardComponent } from '../view-board/view-board.component';
-import { TodoToolbarComponent } from '../todo-toolbar/todo-toolbar.component';
-import { TodoSidenavComponent } from '../todo-sidenav/todo-sidenav.component';
-import { MainRoutingModule } from './main-routing.module';
+import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
+import { TodoSidenavComponent } from '../todo-sidenav/todo-sidenav.component';
+import { TodoToolbarComponent } from '../todo-toolbar/todo-toolbar.component';
+import { ViewBoardModule } from '../view-board/view-board.module';
+import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
 
 @NgModule({
   imports: [
     CommonModule,
     MainRoutingModule,
-    SharedModule
+    SharedModule,
+    ViewBoardModule
   ],
   declarations: [
     MainComponent,
-    ViewBoardComponent,
     TodoToolbarComponent,
     TodoSidenavComponent
   ],

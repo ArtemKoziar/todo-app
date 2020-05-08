@@ -1,0 +1,31 @@
+<div class="board" fxLayout="column">
+  <h2 class="board-title subtitle bold"> {{ data.key }} </h2>
+  <div class="board-content" fxFlex="472px">
+    <div class="tasks" *ngFor="let task of data.value">
+      <div class="task-container" fxLayoutAlign="center center">
+        <button class="marker-btn" fxFlex fxLayoutAlign="center center" (click)="markTask(task)">
+          <mat-icon svgIcon="marker" class="marker-icon" [ngClass]="!task.done ? 'checked' : ''"></mat-icon>
+        </button>
+
+        <p class="task" fxLayoutAlign="start center">
+          {{ task.taskName }}
+        </p>
+        <button class="delete-btn" fxFlex fxLayoutAlign="center center" *ngIf="task.done">
+          <mat-icon class="cross-icon" svgIcon="cross" (click)="removeTask(task.id, task.list)"></mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="board-footer" fxLayout="row" fxLayoutAlign="center center">
+    <input type="text"
+           placeholder="Click to quickly add a task"
+           [(ngModel)]="taskInput"
+           (keydown.enter)="addTask(data.key)"
+           class="send-input">
+
+    <button class="send-button" (click)="addTask(data.key)">
+      <mat-icon svgIcon='send' class="send-icon"></mat-icon>
+    </button>
+  </div>
+</div>
+

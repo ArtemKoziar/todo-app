@@ -1,0 +1,186 @@
+.board {
+  position: relative;
+  width: 335px;
+  height: calc(100vh - 200px);
+  margin-right: 40px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.1);
+}
+
+.board-title {
+  margin: 0;
+  padding: 8px 24px;
+  line-height: 48px;
+  text-transform: capitalize;
+}
+
+.board-content {
+  overflow: scroll;
+}
+
+.board-footer {
+  box-shadow: 0 -4px 10px 0 rgba(0, 0, 0, 0.1);
+  height: 53px;
+  padding: 0 10px;
+}
+
+.task-container {
+  height: 64px;
+  width: 100%;
+  position: relative;
+}
+
+.marker-btn, .delete-btn {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 22px;
+  left: 42px;
+  border: 1px solid #A9A6AB;
+  outline: none;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.delete-btn {
+  right: 42px !important;
+  top: 22px;
+  left: auto;
+  border: none;
+}
+
+.marker-icon {
+  display: flex;
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+&.checked {
+   opacity: 0;
+ }
+
+}
+
+.cross-icon {
+  display: flex;
+  width: 19px;
+  height: 19px;
+::ng-deep path {
+  color: #d8d8d8;
+}
+}
+
+.task {
+  position: relative;
+  width: 285px;
+  height: 48px;
+  border: 1px solid #e7e7e7;
+  padding: 0 54px 0 45px;
+  border-radius: 5px;
+  font-family: "Helvetica Neue";
+  font-size: 16px;
+  transition: all 0.3s;
+  box-shadow:  0 2px 10px 0 rgba(0,0,0,0.1);
+&:hover {
+   border-color: #0080ff;
+ }
+
+&:after {
+   position: absolute;
+   content: '';
+   width: 0px;
+   height: 1px;
+   border-top: 1px solid #d8d8d8;
+ }
+}
+
+.task-checked {
+.task {
+  color: #d8d8d8;
+&:after {
+   position: absolute;
+   content: '';
+   width: 185px;
+   height: 1px;
+   border-top: 1px solid #d8d8d8;
+ }
+}
+
+.cross-icon {
+  display: flex;
+}
+
+.marker-btn {
+  border: none;
+  background-color: #d8d8d8;
+}
+
+}
+
+.send-input {
+  width: 253px;
+  height: 30px;
+  outline: none;
+  border: 1px solid #d8d8d8;
+  border-radius: 20px;
+  padding: 4px 20px;
+  margin-right: 10px;
+  transition: 0.4s;
+  font-size: 14px;
+::placeholder {
+  color: #d8d8d8;
+}
+}
+
+.send-input:focus, .send-input:hover {
+  border-color: #0080ff;
+}
+
+.send-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: 1px solid #d8d8d8;
+  width: 40px;
+  height: 40px;
+  padding: 1px 7px 2px;
+  border-radius: 50%;
+  transition: 0.4s;
+
+mat-icon {
+  display: flex;
+  width: 15px;
+  height: 20px;
+}
+::ng-deep mat-icon path {
+  color: #d8d8d8;
+}
+
+&:hover {
+   background-color: #0080ff;
+   border-color: #0080ff;
+
+::ng-deep mat-icon path {
+  color: #fff;
+}
+}
+
+
+}
+
+.icon {
+  display: block;
+  width: 15px;
+  height: 15px;
+  transition: 0.4s;
+}
+
+.icon path {
+  transition: 0.4s;
+}
+
+.send-button:hover .icon path {
+  fill: #f9f9f9;
+}
