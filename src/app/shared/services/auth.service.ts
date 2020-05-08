@@ -39,8 +39,8 @@ export class AuthService {
     });
   }
 
-  public getUserId(): string {
-    return this.af.auth.currentUser.uid;
+  public getUserId(): Promise<User> {
+    return this.af.currentUser;
   }
 
   public isAuthenticated(): Observable<User> {

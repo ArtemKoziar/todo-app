@@ -1,47 +1,54 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreCollectionGroup } from '@angular/fire/firestore';
+import { User } from 'firebase';
 import { AuthService } from '../shared/services/auth.service';
 
 @Injectable()
 export class ViewBoardService {
+  public userId;
+
   constructor(private firestore: AngularFirestore,
               private authService: AuthService) {
+    this.authService.getUserId().then((user: User) => {
+      this.userId = user.uid;
+    });
   }
 
   public getTasks(list): AngularFirestoreCollection<any> | AngularFirestoreCollectionGroup<any> {
     console.log('get tasks');
     if (list !== 'All tasks') {
       console.log('collection');
-      return this.firestore.collection(`users/${this.authService.getUserId()}/lists/${list}/tasks`);
+      return this.firestore.collection(`users/${this.userId}/lists/${list}/tasks`);
+
     }
     console.log('collection group');
     return this.firestore.collectionGroup('tasks');
   }
 
   public createTask(task, list) {
-    return this.firestore.collection(`users/${this.authService.getUserId()}/lists/${list}/tasks`).doc(task.id).set(task).then(res => {
-      // console.log(res);
-      return res;
-    }).catch(err => {
-      console.log(err);
-    });
+      return this.firestore.collection(`users/${this.userId}/lists/${list}/tasks`).doc(task.id).set(task).then(res => {
+        // console.log(res);
+        return res;
+      }).catch(err => {
+        console.log(err);
+      });
   }
 
   public removeTask(id: string, list: string): void {
-    this.firestore.collection(`users/${this.authService.getUserId()}/lists/${list}/tasks`).doc(id).delete().then(res => {
-      console.log(res);
-      return res;
-    }).catch(err => {
-      console.log(err);
-    });
+      this.firestore.collection(`users/${this.userId}/lists/${list}/tasks`).doc(id).delete().then(res => {
+        console.log(res);
+        return res;
+      }).catch(err => {
+        console.log(err);
+      });
   }
 
   public changeTask(task) {
-    this.firestore.collection(`users/${this.authService.getUserId()}/lists/${task.list}/tasks`).doc(task.id).set(task).then(res => {
-      // console.log('res', res);
-    }).catch(err => {
-      console.log('err', err);
-    });
+      this.firestore.collection(`users/${this.userId}/lists/${task.list}/tasks`).doc(task.id).set(task).then(res => {
+        // console.log('res', res);
+      }).catch(err => {
+        console.log('err', err);
+      });
   }
 
   public expirationToEstimate(expiration: number): string {

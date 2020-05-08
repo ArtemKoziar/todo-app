@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'firebase';
 import { SidenavService } from './sidenav.service';
 import { AngularFirestore, AngularFirestoreCollection, DocumentData } from '@angular/fire/firestore';
 import { AuthService } from '../shared/services/auth.service';
@@ -21,7 +22,9 @@ export class TodoSidenavComponent implements OnInit {
               private firestore: AngularFirestore,
               private authService: AuthService,
               private router: Router) {
-    this.listCollection = this.firestore.collection('users').doc(this.authService.getUserId()).collection('lists');
+    this.authService.getUserId().then((user: User) => {
+      this.listCollection = this.firestore.collection('users').doc(user.uid).collection('lists');
+    });
   }
 
   ngOnInit() {
