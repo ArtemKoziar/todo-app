@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { User } from 'firebase';
 import { ViewBoardService } from './view-board.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from '../shared/services/auth.service';
@@ -48,19 +49,23 @@ export class ViewBoardComponent implements OnInit, OnDestroy {
       this.listTitle = param.list;
       console.log('constructor');
       this.newList = true;
-      this.subscription = this.service.getTasks(this.listTitle).valueChanges().subscribe( tasks => {
-        console.log('tasks', this.listTitle, tasks);
-        this.tasks.today = [];
-        this.tasks.tomorrow = [];
-        this.tasks.upcoming = [];
-        this.tasks.someday = [];
-        tasks.forEach( (task: Task) => {
-          if (task) {
-            task.estimate = this.service.expirationToEstimate(task.expiration);
-            this.tasks[task.estimate.toLowerCase()].push(task);
-          }
+      // todo refactor this shit
+      this.authService.getUserId().then(({uid}) => {
+        this.subscription = this.service.getTasks(this.listTitle, uid).valueChanges().subscribe( tasks => {
+          console.log('tasks', this.listTitle, tasks);
+          this.tasks.today = [];
+          this.tasks.tomorrow = [];
+          this.tasks.upcoming = [];
+          this.tasks.someday = [];
+          tasks.forEach( (task: Task) => {
+            if (task) {
+              task.estimate = this.service.expirationToEstimate(task.expiration);
+              this.tasks[task.estimate.toLowerCase()].push(task);
+            }
+          });
         });
       });
+
     });
   }
 

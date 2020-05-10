@@ -39,7 +39,7 @@ export class DayContainerComponent implements OnInit {
     console.log(estimate);
     const expiration = this.service.estimateToExpiration(estimate);
     const task: Task = {
-      taskName: estimate,
+      taskName: this.taskInput,
       estimate: estimate,
       expiration: expiration,
       done: false,

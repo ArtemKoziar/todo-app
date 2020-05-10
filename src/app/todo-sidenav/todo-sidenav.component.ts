@@ -24,11 +24,12 @@ export class TodoSidenavComponent implements OnInit {
               private router: Router) {
     this.authService.getUserId().then((user: User) => {
       this.listCollection = this.firestore.collection('users').doc(user.uid).collection('lists');
+      this.lists$ = this.listCollection.valueChanges();
     });
   }
 
   ngOnInit() {
-    this.lists$ = this.listCollection.valueChanges();
+
   }
 
   public createList() {

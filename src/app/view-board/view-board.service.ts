@@ -9,16 +9,13 @@ export class ViewBoardService {
 
   constructor(private firestore: AngularFirestore,
               private authService: AuthService) {
-    this.authService.getUserId().then((user: User) => {
-      this.userId = user.uid;
-    });
   }
 
-  public getTasks(list): AngularFirestoreCollection<any> | AngularFirestoreCollectionGroup<any> {
+  public getTasks(list, uid): AngularFirestoreCollection<any> | AngularFirestoreCollectionGroup<any> {
     console.log('get tasks');
     if (list !== 'All tasks') {
       console.log('collection');
-      return this.firestore.collection(`users/${this.userId}/lists/${list}/tasks`);
+      return this.firestore.collection(`users/${uid}/lists/${list}/tasks`);
 
     }
     console.log('collection group');
