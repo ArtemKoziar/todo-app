@@ -1,12 +1,5 @@
-<div class="toolbar-container" fxLayout="row" fxLayoutAlign="space-between">
-  <div>
-
-  </div>
+<div class="toolbar-container" fxLayout="row" fxLayoutAlign="end center">
   <div class="options" fxLayout="row" fxLayoutGap="30px">
-    <!--<button mat-button class="btn btn-login"-->
-            <!--(click)="onLogin()"-->
-            <!--*ngIf="authService.isAuthenticated() | async"> Login-->
-    <!--</button>-->
     <button mat-button class="btn btn-logout"
             (click)="onLogout()"
             *ngIf="authService.isAuthenticated() | async"> Logout
