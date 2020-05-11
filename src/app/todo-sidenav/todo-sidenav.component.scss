@@ -1,78 +1,114 @@
+@import "../../assets/variables";
+
+%icon-hover {
+  transition: all 0.3s;
+  &:hover {
+    box-shadow: $sidenav-icon-hover 0 0 0 6px;
+  }
+}
+
 .container {
   padding: 30px 0;
 }
 
-.list-item {
+.header {
+  background-color: $sidenav-hover-color;
+  line-height: 44px;
+  height: 44px;
+  font: 600 14px 'Helvetica Neue';
+  padding: 0 20px 0 30px;
+  letter-spacing: 0.3px;
+
+  .title-text {
+    color: $sidenav-blue-color;
+
+    ::ng-deep mat-icon path {
+      color: $sidenav-blue-color;
+    }
+  }
+}
+
+.action-icons mat-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+  @extend %icon-hover;
+
+  ::ng-deep path {
+    color: $white;
+  }
+
+  &.edit-icon  {
+    ::ng-deep path {
+      color: rgb(74, 74, 74);
+    }
+    &:hover {
+      background-color: $sidenav-icon-hover;
+    }
+  }
+
+  &.close-icon {
+    background-color: $sidenav-red-icon;
+  }
+
+  &.save-icon {
+    background-color: $sidenav-green-icon;
+  }
+}
+
+.item {
   line-height: 44px;
   list-style-type: none;
-}
-
-.list-item:first-child {
-  background-color: #f6f6f6;
-}
-
-.list-item {
   height: 44px;
-  padding: 0 20px 0 30px;
-}
-
-.list-item-container, .new-list-input::placeholder {
-  position: relative;
-  color: #898989;
-  font-size: 16px;
-  font-family: 'Helvetica Neue';
-}
-
-.list-item-text {
-  position: absolute;
-  padding-left: 40px;
-  width: 100%;
-  box-sizing: border-box;
+  color: $sidenav-text-color;
+  background-color: $white;
+  padding: 0 20px 0 70px;
+  font: 400 14px 'Helvetica Neue';
   cursor: pointer;
+  position: relative;
+  transition: all 0.3s;
+
+  &.list-item:hover {
+    background-color: $sidenav-hover-color;
+  }
 }
 
-.title-text {
-  text-transform: uppercase;
-  font: 600 16px 'Helvetica Neue';
-  color: #0080ff;
+.drag-icon {
+  position: absolute;
+  left: 30px;
 }
 
 .new-list-input {
+  color: $sidenav-text-color;
+  font: 400 14px 'Helvetica Neue';
   outline: none;
   border: none;
-  padding-left: 39px;
-  color: #898989;
+
+  &:hover {
+    background-color: $white;
+  }
 }
 
 .list-icon {
   cursor: pointer;
   display: flex;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
+  &.delete-icon {
+    @extend %icon-hover;
+    &:hover {
+      background-color: $sidenav-icon-hover;
+    }
+  }
 
   ::ng-deep path {
     color: rgb(74, 74, 74);
   }
 
-  &[aria-label='save'] {
-    background-color: #7ed321;
-  }
-
-  &[aria-label='close'] {
-    background-color: #ff001f;
-  }
-
   ::ng-deep &.to-delete path {
-    color: #ff001f;
+    background-color: $sidenav-red-icon;
   }
-
-  ::ng-deep &[aria-label='save'] path,
-  ::ng-deep &[aria-label='close'] path{
-    color: #fff;
-  }
-}
-
-.drag-icon, .done-icon {
-  margin-right: 15px;
 }

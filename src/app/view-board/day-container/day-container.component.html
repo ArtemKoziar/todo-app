@@ -5,9 +5,9 @@
          fxLayoutAlign="space-between center"
          fxLayout="row"
          fxLayoutGap="15px"
+         [ngClass]="task.done ? 'checked' : ''"
          *ngFor="let task of data.value">
       <button class="marker-btn"
-              [ngClass]="task.done ? 'checked' : ''"
               fxFlexOffset="20px"
               fxLayoutAlign="center center"
               (click)="markTask(task)">
@@ -16,7 +16,9 @@
                   *ngIf="task.done"></mat-icon>
       </button>
 
-      <div fxFlex fxLayoutAlign="start center">
+      <div fxFlex
+           fxLayoutAlign="start center"
+           class="task-name">
         {{ task?.taskName?.length > 24 ? task.taskName.slice(0, 24) + '...' : task.taskName }}
         <div class="delete-btn-container">
           <button class="delete-btn" fxLayoutAlign="center center" *ngIf="task.done">

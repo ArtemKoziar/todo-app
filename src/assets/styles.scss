@@ -1,15 +1,73 @@
 @import './reset.scss';
 @import './variables.scss';
 
+
+@font-face {
+  font-family: 'Open-Bold';
+  src: url("./fonts/OpenSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: 'Open-Semibold';
+  src: url("./fonts/OpenSans-Semibold.ttf");
+}
+
+@font-face {
+  font-family: 'Open-Regular';
+  src: url("./fonts/OpenSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'Activ-Grotesk';
+  src: url("./fonts/AktivGroteskCorp-Regular.ttf");
+}
+
+.bold {
+  font-family: Open-Bold, serif;
+}
+
+.semibold {
+  font-family: Open-Semibold, serif;
+}
+
+.regular {
+  font-family: Open-Regular, serif;
+}
+
+.secondary-font {
+  font-family: Activ-Grotesk, serif;
+}
+
+.title {
+  font-size: 28px;
+  color: $primary-text-color;
+}
+
+.subtitle {
+  color: $primary-text-color;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+}
+
+.subtitle-light {
+  font-size: 18px
+}
+
+.hint {
+  font-size: 12px;
+}
+
 html, body { height: 100%; }
 * {
   font-family: "Helvetica Neue", sans-serif;
   font-size: 16px;
   margin: 0;
   padding: 0;
-  color: $primary-text-color;
 }
 
+body {
+  color: $primary-text-color;
+}
 
 .mat-toolbar-single-row {
   padding: 0!important;

@@ -1,3 +1,5 @@
+@import "../../../assets/variables";
+
 .board {
   position: relative;
   width: 335px;
@@ -34,7 +36,7 @@
 
   &:hover {
     border-color: #0080ff;
-    box-shadow:  0 2px 10px 0 rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
   }
 
   &:after {
@@ -46,27 +48,34 @@
   }
 }
 
-.task-checked {
-  .task {
-    color: #d8d8d8;
-    &:after {
-      position: absolute;
-      content: '';
-      width: 185px;
-      height: 1px;
-      border-top: 1px solid #d8d8d8;
-    }
-  }
+.task {
+  color: #d8d8d8;
 
+  .task-name {
+    color: $primary-text-color;
+    position: relative;
+  }
   .cross-icon {
     display: flex;
   }
+}
 
-  .marker-btn {
-    border: none;
-    background-color: #d8d8d8;
+.task.checked {
+  .task-name {
+    color: $secondary-text-color;
+
+    &:after {
+      position: absolute;
+      top: 8px;
+      content: "";
+      width: calc(100% - 33px);
+      border-top: 1px solid #d8d8d8;
+    }
   }
-
+  .marker-btn {
+    background-color: #d8d8d8;
+    border: none;
+  }
 }
 
 .board-footer {
@@ -85,9 +94,10 @@
   z-index: 1;
   transition: all 0.3s;
   cursor: pointer;
+
   &.checked {
     border: none;
-    background-color: rgba(169,166,171, 0.3);
+    background-color: rgba(169, 166, 171, 0.3);
   }
 }
 
@@ -97,6 +107,7 @@
   left: auto;
   background-color: #fff;
   padding-left: 8px;
+
   .delete-btn {
     border: none;
   }
@@ -106,6 +117,7 @@
   display: flex;
   width: 10px;
   height: 10px;
+
   ::ng-deep path {
     color: #fff;
   }
@@ -115,9 +127,10 @@
   display: flex;
   width: 19px;
   height: 19px;
-::ng-deep path {
-  color: #d8d8d8;
-}
+
+  ::ng-deep path {
+    color: #d8d8d8;
+  }
 }
 
 .send-input {
@@ -130,9 +143,10 @@
   margin-right: 10px;
   transition: 0.4s;
   font-size: 14px;
-::placeholder {
-  color: #d8d8d8;
-}
+
+  ::placeholder {
+    color: #d8d8d8;
+  }
 }
 
 .send-input:focus, .send-input:hover {
@@ -153,23 +167,24 @@
   border-radius: 50%;
   transition: 0.4s;
 
-mat-icon {
-  display: flex;
-  width: 15px;
-  height: 20px;
-}
-::ng-deep mat-icon path {
-  color: #d8d8d8;
-}
+  mat-icon {
+    display: flex;
+    width: 15px;
+    height: 20px;
+  }
 
-&:hover {
-   background-color: #0080ff;
-   border-color: #0080ff;
+  ::ng-deep mat-icon path {
+    color: #d8d8d8;
+  }
 
-::ng-deep mat-icon path {
-  color: #fff;
-}
-}
+  &:hover {
+    background-color: #0080ff;
+    border-color: #0080ff;
+
+    ::ng-deep mat-icon path {
+      color: #fff;
+    }
+  }
 
 
 }

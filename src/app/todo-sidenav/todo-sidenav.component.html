@@ -1,40 +1,46 @@
 <div class="container">
+  <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="title-text"
+          fxFlex
+          fxLayout="row"
+          fxLayoutAlign="left center"
+          fxLayoutGap="15px">
+      <mat-icon svgIcon="done"></mat-icon>
+      <span>Lists</span>
+    </span>
 
-  <ul fxLayout="column" class="list">
-    <li class="list-item" fxLayout="row" fxLayoutAlign="space-between center">
-      <span class="title-text" fxFlex fxLayout="row" fxLayoutAlign="left center">
-        <mat-icon svgIcon="done" class="done-icon"></mat-icon> My lists </span>
-      <span fxLayout="row" fxLayoutAlign="right center" fxLayoutGap="15px">
-        <mat-icon svgIcon="edit" class="edit-icon list-icon" *ngIf="!editLists; else editView"
-                  (click)="editLists = true"></mat-icon>
-      <ng-template #editView>
-          <mat-icon svgIcon="cross-thin" class="edit-icon list-icon" aria-label="close"
-                    (click)="cancelListsChanges()"></mat-icon>
-          <mat-icon svgIcon="save" class="edit-icon list-icon" aria-label="save"
-                    (click)="saveListsChanges()"></mat-icon>
-      </ng-template>
-        </span>
-    </li>
-    <li class="list-item" fxLayout="row" fxLayoutAlign="space-between center">
-      <span class="list-item-container" fxFlex fxLayout="row" fxLayoutAlign="left center">
-        <span class="list-item-text" (click)="selectList('All tasks')"> All tasks </span>
-      </span>
-    </li>
-    <li class="list-item" fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let list of lists$ | async">
-      <span class="list-item-container" fxFlex fxLayout="row" fxLayoutAlign="left center">
-        <span class="list-item-text" (click)="selectList(list.listName)"> {{ list.listName }} </span>
+    <span fxLayout="row" fxLayoutAlign="right center" class="action-icons">
+        <mat-icon svgIcon="edit"
+                  class="edit-icon"
+                  *ngIf="!editLists; else editView"
+                  (click)="editLists = true">
+        </mat-icon>
+        <ng-template #editView>
+          <span fxLayout="row" fxLayoutAlign="right center" fxLayoutGap="15px">
+              <mat-icon svgIcon="cross-thin" class="close-icon" (click)="cancelListsChanges()"></mat-icon>
+              <mat-icon svgIcon="save" class="save-icon" (click)="saveListsChanges()"></mat-icon>
+          </span>
+        </ng-template>
+    </span>
+  </div>
 
-        <ng-container *ngIf="editLists">
-          <div fxLayout="row" fxLayoutAlign="space-between center" fxFlexFill="">
-           <mat-icon svgIcon="drag" class="list-icon drag-icon"></mat-icon>
-           <mat-icon svgIcon="delete" class="list-icon"
-                     [ngClass]="listsToRemove[list.listName] === list.listName ? 'to-delete' : ''"
-                     (click)="deleteList(list.listName)"></mat-icon>
-          </div>
-          </ng-container>
-      </span>
+  <ul fxLayout="column" class="tasks-list">
+    <li class="list-item item" fxLayoutAlign="left center" (click)="selectList('All tasks')">
+      All tasks
     </li>
-    <li class="list-item">
+
+    <li class="list-item item" fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let list of lists$ | async">
+      <mat-icon svgIcon="drag" class="list-icon drag-icon" *ngIf="editLists"></mat-icon>
+      <span (click)="selectList(list.listName)"> {{ list.listName }} </span>
+      <mat-icon svgIcon="delete"
+                class="list-icon delete-icon"
+                *ngIf="editLists"
+                [ngClass]="listsToRemove[list.listName] === list.listName ? 'to-delete' : ''"
+                (click)="deleteList(list.listName)">
+      </mat-icon>
+    </li>
+
+    <li class="item" fxLayoutAlign="left center">
       <input type="text"
              [(ngModel)]="newList"
              (keydown.enter)="createList()"
