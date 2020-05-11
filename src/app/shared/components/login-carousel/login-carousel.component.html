@@ -1,0 +1,27 @@
+<div fxLayout="column" fxLayoutGap="10px">
+  <section #carouselWrapper class="carousel-wrapper">
+    <ul #carousel
+        class="carousel-inner"
+        fxLayoutGap='30px'>
+      <li [ngStyle]="{width: carouselItemWidth + 'px' }"
+          *ngFor="let item of carouselItems; index as id"
+          class="carousel-item"
+          fxLayoutAlign="center left"
+          fxLayout="column" fxLayoutGap="30px">
+        <div fxLayout="column" fxLayoutGap="15px">
+          <h1 class="title bold"> {{ item.title }} </h1>
+          <p class="subtitle"> {{item.body }}</p>
+        </div>
+        <img [src]="item.img" [alt]="item.title" class="carousel-image">
+      </li>
+    </ul>
+  </section>
+
+  <div class="slide-navigation" fxLayout="row" fxFlex fxLayoutAlign="center" fxLayoutGap="5px">
+    <span *ngFor="let point of carouselItems; index as id"
+          class="navigation-point"
+          [ngClass]="id === currentSlide ? 'active': ''"
+          (click)="nextSlide(id)"></span>
+  </div>
+
+</div>

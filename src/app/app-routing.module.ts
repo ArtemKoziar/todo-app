@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {
-    path: 'login', component: LoginComponent,
+    path: 'login', loadChildren: () => import('./login/login.module').then(mod => mod.LoginModule),
     canActivate: [AngularFireAuthGuard], data: { authGuardPipe: () => redirectLoggedInTo(['tasks']) }
   },
   {

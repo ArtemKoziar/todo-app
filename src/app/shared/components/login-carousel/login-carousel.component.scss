@@ -1,0 +1,41 @@
+@import "../../../../assets/variables";
+
+:host {
+  position: relative;
+}
+
+.carousel-wrapper {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 6000px;
+  height: 100%;
+}
+
+.carousel-image {
+  width: 515px;
+  height: 400px;
+}
+
+.slide-navigation {
+  width: 100%;
+}
+
+.navigation-point {
+  cursor: pointer;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: $sidenav-icon-hover;
+  transition: all 0.3s;
+  &.active {
+    background-color: $sidenav-blue-color;
+  }
+}
